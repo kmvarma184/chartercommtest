@@ -26,5 +26,5 @@ user2      40.0
 user1 = 150 points
 user2 = 10 points
 
-
+Simple spring boot so we can run like a normal jar application on local.
 
