@@ -10,7 +10,9 @@ GET /reward/user1 to get the reward of a user with id as userId
 POST /reward
 {
   userId: "user1",
-  amount: 34.0
+  payment: {
+    amount: 34.0
+  }
 }
 to record the transactions.
 
@@ -28,3 +30,14 @@ user2 = 10 points
 
 Simple spring boot so we can run like a normal jar application on local.
 
+CurL:
+curl --location --request GET 'localhost:8080/reward/user2'
+
+curl --location --request POST 'localhost:8080/reward' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "userId": "user2",
+    "payment": {
+        "amount": 50.0
+    }
+}'
