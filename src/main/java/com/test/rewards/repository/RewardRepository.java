@@ -10,8 +10,9 @@ import java.util.Map;
 public class RewardRepository {
 
     private Map<String, Double> cache = new HashMap<>();
-    public void add(Customer customer, Double amount) {
+    public int add(Customer customer, Double amount) {
         cache.put(customer.getUserId(), cache.getOrDefault(customer.getUserId(), 0.0) + amount);
+        return 1;
     }
 
     public Double getByUser(Customer customer) {
