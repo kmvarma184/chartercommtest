@@ -32,8 +32,9 @@ public class RewardController {
     }
 
     @PostMapping()
-    public void addUserTransaction(@RequestBody UserPayment userPayment) {
+    public ResponseEntity<UserPayment> addUserTransaction(@RequestBody UserPayment userPayment) {
         // not adding validations intentionally here.
         userRewardService.addUserTransaction(userPayment);
+        return new ResponseEntity<UserPayment>(userPayment, HttpStatus.OK);
     }
 }

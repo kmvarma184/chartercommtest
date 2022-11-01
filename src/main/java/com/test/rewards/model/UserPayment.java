@@ -11,4 +11,5 @@ public class UserPayment {
 
     private String userId;
     private Money payment;
+    private String dateTime;
 }
