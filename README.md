@@ -41,3 +41,8 @@ curl --location --request POST 'localhost:8080/reward' \
         "amount": 50.0
     }
 }'
+
+RewardStatementTest.java has example of dataset being used to calculate reward
+as Integeration test.
+
+UserRewardServiceTest has unit test.
