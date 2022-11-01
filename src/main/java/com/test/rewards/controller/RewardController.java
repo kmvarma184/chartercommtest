@@ -18,9 +18,9 @@ public class RewardController {
     private UserRewardService userRewardService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserPoints> fetchUserPoints(@RequestParam("userId") String userId) {
+    public ResponseEntity<UserPoints> fetchUserPoints(@PathVariable("userId") String userId) {
         if (StringUtils.isEmpty(userId)) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         UserPoints userPoints = null;
         try {
