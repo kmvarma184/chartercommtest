@@ -12,11 +12,12 @@ public class RewardCalculatorService {
 
     public int calculate(Double amount) {
         int points = 0;
-        if (amount < 50) {
-            return points;
+        if (amount >= firstStage) {
+            points += (int)(amount - firstStage) * firstPointer;
         }
-        points += (int)(amount - firstStage) * firstPointer;
-        points += (int)(amount - secondStage) * secondPointer;
+        if (amount >= secondStage) {
+            points += (int)(amount - secondStage) * secondPointer;
+        }
         return points;
     }
 }

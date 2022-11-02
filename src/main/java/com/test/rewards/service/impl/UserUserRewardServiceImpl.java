@@ -10,6 +10,14 @@ import com.test.rewards.repository.UserRepository;
 import com.test.rewards.service.UserRewardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 @Service
 public class UserUserRewardServiceImpl implements UserRewardService {
@@ -29,8 +37,31 @@ public class UserUserRewardServiceImpl implements UserRewardService {
         // Add Metrics start here or use annotations
         int points = 0;
         try {
-            Double amount = rewardRepository.getByUser(new Customer(userId));
-            points = rewardCalculatorService.calculate(amount);
+            Collection<Double> amountCollection = rewardRepository.getByUser(userId);
+            Double totalAmount = amountCollection.stream().reduce(0.0, (a, b) -> a + b);
+            points = rewardCalculatorService.calculate(totalAmount);
+            // Add Metrics end here
+
+        } catch (Exception e) {
+            // add the retry logic if needed here. or generic method for that in one place.
+            throw new BusinessException(e.toString());
+        }
+        return new UserPoints(userId, new Points(points));
+    }
+
+    // Can be extended to use to get points between any 2 dates.
+    @Override
+    public UserPoints calculateReward(String userId, int months) throws BusinessException {
+        int points = 0;
+        try {
+            LocalDateTime startDate = LocalDateTime.now().minusMonths(3);
+            LocalDateTime endDate = LocalDateTime.now();
+            Collection<Double> amountCollection = rewardRepository.getByUserAndRange(userId, startDate, endDate);
+            if (CollectionUtils.isEmpty(amountCollection)) {
+                throw new BusinessException("empty");
+            }
+            Double totalAmount = amountCollection.stream().reduce(0.0, (a, b) -> a + b);
+            points = rewardCalculatorService.calculate(totalAmount);
             // Add Metrics end here
 
         } catch (Exception e) {
@@ -43,7 +74,9 @@ public class UserUserRewardServiceImpl implements UserRewardService {
     @Override
     public UserPayment addUserTransaction(UserPayment userPayment) {
         // do validations here. not doing for the assignment.
-        rewardRepository.add(new Customer(userPayment.getUserId()), userPayment.getPayment().getAmount());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        LocalDateTime localDate = LocalDateTime.parse(userPayment.getDateTime(), formatter);
+        rewardRepository.add(userPayment.getUserId(), userPayment.getPayment().getAmount(), localDate);
         return userPayment;
     }
 }

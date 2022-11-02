@@ -8,5 +8,7 @@ public interface UserRewardService {
 
     public UserPoints calculateReward(String userId) throws BusinessException;
 
+    public UserPoints calculateReward(String userId, int months) throws BusinessException;
+
     public UserPayment addUserTransaction(UserPayment userPayment);
 }

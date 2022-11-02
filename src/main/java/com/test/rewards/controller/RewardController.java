@@ -31,6 +31,21 @@ public class RewardController {
         return new ResponseEntity<>(userPoints, HttpStatus.OK);
     }
 
+    @GetMapping("/{userId}/last/{months}")
+    public ResponseEntity<UserPoints> fetchUserPointsForLastNMonths(@PathVariable("userId") String userId,
+                                                                    @PathVariable("months") Integer months) {
+        if (StringUtils.isEmpty(userId)) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        UserPoints userPoints = null;
+        try {
+            userPoints = userRewardService.calculateReward(userId, months);
+        } catch (BusinessException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(userPoints, HttpStatus.OK);
+    }
+
     @PostMapping()
     public ResponseEntity<UserPayment> addUserTransaction(@RequestBody UserPayment userPayment) {
         // not adding validations intentionally here.
