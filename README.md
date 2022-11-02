@@ -2,8 +2,10 @@
 
 A Reward Management system
 
-It requires an input of User Transaction which basically takes in userId and the amount.
-Also when called about the reward statement it can give the reward points on user basis.
+It requires an input of User Transaction which basically takes in userId, amount and date.
+Also when called about the reward statement it can give the reward points on user basis and on basis of date basis.
+
+Api exposed takes number as last few months but the inner implementation is capable of taking any startDate and endDate and calculate accordingly.
 
 Basic 2 apis have been exposed as part of assignment:
 GET /reward/user1 to get the reward of a user with id as userId
