@@ -42,7 +42,15 @@ curl --location --request POST 'localhost:8080/reward' \
     }
 }'
 
+
+curl --location --request GET 'localhost:8080/reward/user2/last/3'
 RewardStatementTest.java has example of dataset being used to calculate reward
 as Integeration test.
+[Reward Statement.xlsx](https://github.com/kmvarma184/chartercommtest/files/9921779/Reward.Statement.xlsx)
 
-UserRewardServiceTest has unit test.
+Attached is file with 150 rows and days of various customer data same which is used in the integration test.
+Unit test are intentionally not written since being interview assessment was very long itself in the implementation. 
+we can discuss further about the extension/ability, please dont consider it to be production ready because it is not. It is an assessment.
+
+
+
