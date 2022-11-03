@@ -15,7 +15,11 @@ Using epoch timestamp as sort key or second index via TreeMap which allows to fi
 Api exposed takes number as last few months but the inner implementation is capable of taking any startDate and endDate and calculate accordingly.
 
 Basic 2 apis have been exposed as part of assignment:
+
+
 GET /reward/user1 to get the reward of a user with id as userId
+
+
 POST /reward
 {
   userId: "user1",
@@ -23,6 +27,8 @@ POST /reward
     amount: 34.0
   }
 }
+
+
 to record the transactions.
 
 Basic functionality is implemented with design to extend it to implement the most complex usages.
