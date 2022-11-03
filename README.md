@@ -57,9 +57,11 @@ as Integeration test.
 [Reward Statement.xlsx](https://github.com/kmvarma184/chartercommtest/files/9921779/Reward.Statement.xlsx)
 
 Attached is file with 150 rows and days of various customer data same which is used in the integration test.
+
 Unit test are intentionally not written since being interview assessment was very long itself in the implementation. 
-we c<img width="311" alt="Screenshot 2022-11-03 230439" src="https://user-images.githubusercontent.com/117094800/199794004-e763564e-5650-4283-82e2-e39e58a3474f.png">
-an discuss further about the extension/ability, please dont consider it to be production ready because it is not. It is an assessment.
+we can discuss further about the extension/ability, please don't consider it to be production ready because it is not. It is implemented like an assessment. Definitely capable of writing fully production ready code.
 
 
+
+<img width="311" alt="Screenshot 2022-11-03 230439" src="https://user-images.githubusercontent.com/117094800/199794004-e763564e-5650-4283-82e2-e39e58a3474f.png">
 
