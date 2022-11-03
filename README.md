@@ -12,6 +12,8 @@ Using userId as Key for the first index via HashMap
 
 Using epoch timestamp as sort key or second index via TreeMap which allows to find the reward between any 2 dates. (simply the most extensible) 
 
+Do check : RewardRepository.java
+
 Api exposed takes number as last few months but the inner implementation is capable of taking any startDate and endDate and calculate accordingly.
 
 Basic 3 apis have been exposed as part of assignment:
